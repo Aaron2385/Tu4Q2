@@ -1,0 +1,99 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="60dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adding records to student table"
+        android:id="@+id/response" />
+
+    <TableLayout
+        android:id="@+id/add_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp">
+        <TableRow>
+            <TextView
+                android:text="StudentID:"
+                android:padding="3dip" />
+            <EditText
+                android:id="@+id/student_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="FirstName:"
+                android:padding="3dip" />
+            <EditText
+                android:id="@+id/first_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="LastName:"
+                android:padding="3dip" />
+            <EditText
+                android:id="@+id/last_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="Year Of Birth:"
+                android:padding="3dip" />
+            <EditText
+                android:id="@+id/dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minWidth="150dip" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="Gender:"
+                android:padding="10dip" />
+            <EditText
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minWidth="50dip" />
+        </TableRow>
+        <TableRow>
+            <Button
+                android:id="@+id/add_button"
+                android:text="Add Student"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip" />
+            <Button
+                android:id="@+id/viewButton"
+                android:text="View Records"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip" />
+            <Button
+                android:id="@+id/cancelButton"
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip" />
+            <Button
+                android:id="@+id/clearButton"
+                android:text="Clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip" />
+
+
+        </TableRow>
+    </TableLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
