@@ -5,10 +5,16 @@
     android:paddingTop="60dp">
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/response"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Adding records to student table"
-        android:id="@+id/response" />
+        android:text="Adding records to student table" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="195dp"
+        android:layout_height="wrap_content"
+        android:text="Show Long Select" />
 
     <TableLayout
         android:id="@+id/add_table"
@@ -96,4 +102,10 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 </LinearLayout>

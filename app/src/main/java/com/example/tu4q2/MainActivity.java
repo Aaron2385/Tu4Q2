@@ -62,36 +62,5 @@ public class MainActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
     }
 
-//    public boolean insertRec() {
-//
-//        mydManager.addRow(101, "Aaron", "Phan", "23/08/2005", "Male");
-//        mydManager.addRow(102, "Scott", "Pham", "26/08/2005", "Male");
-//
-//        response.setText("The rows in the students table are inserted");
-//        studentRec.setText("");
-//        //mydManager.close(); do not close db to view the db in App Inspector
-//        return true;
-//    }
-
-//    public boolean showRec() {
-//        mydManager.openReadable();
-//        String tableContent = mydManager.retrieveRows();
-//        response.setText("The rows in the students table are: \n");
-//
-//        studentRec.setText(tableContent);
-//        //mydManager.close();
-//        return true;
-//    }
-
-//    public boolean updateRec(){
-//        mydManager.updateRows(102, "Wen", "Pham", "26/08/2005", "Female");
-//        return true;
-//    }
-
-//    public boolean removeRecs() {
-//        mydManager.clearRecords();
-//        response.setText("All Records are removed");
-//        return true;
-//    }
 
 }

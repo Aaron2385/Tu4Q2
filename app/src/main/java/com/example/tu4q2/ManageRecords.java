@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,9 +19,10 @@ public class ManageRecords extends AppCompatActivity {
     private DatabaseManager mydManager;
     private TextView response;
     private EditText studentID, FirstName, LastName, YearOfBirth, Gender;
-    private Button addButton, showRecords, clearRecords, cancelRecords;
+    private Button addButton, showRecords, clearRecords, cancelRecords, showSelectedButton;
     private RecyclerView recyclerView;
     private CustomAdapter adapter;
+    private ArrayList<String> selectedItems = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,7 @@ public class ManageRecords extends AppCompatActivity {
         showRecords = findViewById(R.id.viewButton);
         cancelRecords = findViewById(R.id.cancelButton);
         clearRecords = findViewById(R.id.clearButton);
+        showSelectedButton = findViewById(R.id.button2);
 
         recyclerView = findViewById(R.id.recyclerView); // Make sure you have this in your XML
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -80,10 +83,32 @@ public class ManageRecords extends AppCompatActivity {
         });
 
         showRecords.setOnClickListener(v -> {
-            ArrayList<String> records = mydManager.retrieveRows(); // get list
-            adapter = new CustomAdapter(records); // pass list to adapter
-            recyclerView.setAdapter(adapter); // bind to recyclerView
+            ArrayList<Model> records = mydManager.retrieveRows();
+            adapter = new CustomAdapter(records);
+            recyclerView.setAdapter(adapter);
         });
+
+        showSelectedButton.setOnClickListener(v -> {
+            selectedItems.clear(); // clear old selections
+
+            for (Model model : adapter.getModelList()) {
+                if (model.isSelected()) {
+                    selectedItems.add(model.getText());
+                }
+            }
+
+            if (selectedItems.isEmpty()) {
+                Toast.makeText(this, "No items selected", Toast.LENGTH_SHORT).show();
+            } else {
+                // Display all selected items
+                StringBuilder result = new StringBuilder();
+                for (String item : selectedItems) {
+                    result.append(item).append("\n");
+                }
+                Toast.makeText(this, "Selected:\n" + result.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+
 
     }
 }

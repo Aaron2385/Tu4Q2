@@ -59,21 +59,17 @@ public class DatabaseManager {
         }
     }
 
-    // Retrieve
-    public ArrayList<String> retrieveRows() {
-        ArrayList<String> studentRows = new ArrayList<>();
-        String[] columns = new String[]{"StudentID", "FirstName", "LastName", "YearOfBirth", "Gender"};
-        Cursor cursor = db.query(DB_TABLE, columns, null, null, null, null, null);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            String row = cursor.getInt(0) + ", " + cursor.getString(1) + ", " + cursor.getString(2) + ", " + cursor.getString(3) + ", " + cursor.getString(4);
-            studentRows.add(row);
-            cursor.moveToNext();
+    // Inside DatabaseManager.java
+    public ArrayList<Model> retrieveRows() {
+        ArrayList<Model> records = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM student", null);
+        while (cursor.moveToNext()) {
+            String rowText = cursor.getInt(0) + " " + cursor.getString(1) + " " +
+                    cursor.getString(2) + " " + cursor.getString(3) + " " + cursor.getString(4);
+            records.add(new Model(rowText, false)); // initially, all items are unselected
         }
-        if (cursor != null && !cursor.isClosed()) {
-            cursor.close();
-        }
-        return studentRows;
+        cursor.close();
+        return records;
     }
 
     // Delete all
@@ -82,16 +78,16 @@ public class DatabaseManager {
         db.delete(DB_TABLE, null, null);
     }
 
-    // Update
-    public void updateRows(int studentID, String firstName, String lastName, String yearOfBirth, String gender) {
-        ContentValues values = new ContentValues();
-        values.put("FirstName", firstName);
-        values.put("LastName", lastName);
-        values.put("YearOfBirth", yearOfBirth);
-        values.put("Gender", gender);
-        int rowsUpdated = db.update(DB_TABLE, values, "StudentID = ?", new String[]{String.valueOf(studentID)});
-        Log.d("DatabaseManager", rowsUpdated + " rows updated.");
-    }
+//    // Update
+//    public void updateRows(int studentID, String firstName, String lastName, String yearOfBirth, String gender) {
+//        ContentValues values = new ContentValues();
+//        values.put("FirstName", firstName);
+//        values.put("LastName", lastName);
+//        values.put("YearOfBirth", yearOfBirth);
+//        values.put("Gender", gender);
+//        int rowsUpdated = db.update(DB_TABLE, values, "StudentID = ?", new String[]{String.valueOf(studentID)});
+//        Log.d("DatabaseManager", rowsUpdated + " rows updated.");
+//    }
 
     // SQLite Helper
     public class SQLHelper extends SQLiteOpenHelper {
